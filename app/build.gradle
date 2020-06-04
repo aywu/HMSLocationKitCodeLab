@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.example.hmslocationkitcodelab"
+
+        minSdkVersion 17
+        /*
+        Manifest merger failed : uses-sdk:minSdkVersion 16 cannot be smaller than version 17 declared in library [com.huawei.hms:location:4.0.3.301] C:\Users\ywu3\.gradle\caches\transforms-2\files-2.1\6325634bfa0163aa9d26ac5bd065e202\jetified-location-4.0.3.301\AndroidManifest.xml as the library might be using APIs not available in 16
+	Suggestion: use a compatible library with a minSdk of at most 16,
+		or increase this project's minSdk version to at least 17,
+		or use tools:overrideLibrary="com.huawei.android.hms.location" to force usage (may lead to runtime failures)
+      */
+
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // added by Alan
+
+    // replace: implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    implementation 'com.huawei.hms:location:4.0.3.301'
+}
